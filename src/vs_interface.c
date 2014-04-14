@@ -21,7 +21,7 @@ vs_play(char *buf, ULONG size, ULONG delay)
 	while (pos < size) {
 		clockport_write(wr_reg++, buf[pos++]);
 
-		if (wr_reg == HW_SPI_DATA_WR_3) {
+		if (wr_reg > HW_SPI_DATA_WR_3) {
 			clockport_write(HW_CPLD_COMMAND, HW_CPLD_COMMAND_SEND);
 			wr_reg = HW_SPI_DATA_WR_0;
 			Delay(delay);
