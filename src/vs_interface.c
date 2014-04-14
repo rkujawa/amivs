@@ -33,7 +33,10 @@ vs_play(char *buf, ULONG size, ULONG delay)
 		if (wr_reg > HW_SPI_DATA_WR_3) {
 			clockport_write(HW_CPLD_COMMAND, HW_CPLD_COMMAND_SEND);
 			wr_reg = HW_SPI_DATA_WR_0;
+
 			nop_delay(delay);
+			while (clockport_read(HW_STATUS) != 0) 
+				nop_delay(delay);
 		}	
 	}
 }
