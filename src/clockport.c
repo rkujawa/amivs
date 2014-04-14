@@ -35,7 +35,7 @@ clockport_write(UBYTE reg, UBYTE value)
 {
 	UBYTE *ptr;
 
-	ptr = cardaddr + (reg * CLOCKPORT_STRIDE);
+	ptr = cp + (reg * CLOCKPORT_STRIDE);
 	if (debug)
 		printf("DEBUG: write %x to %p\n", (int) value, (void*) ptr);
 	*ptr = value;

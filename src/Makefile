@@ -4,8 +4,8 @@ RMRF=rm -rf
 CFLAGS=
 LDFLAGS=-lamiga
 
-OBJECTS=amivs.o file.o clockport.o 
-ADDHEADERS=
+OBJECTS=amivs.o file.o clockport.o vs_interface.o
+ADDHEADERS=vs_regs.h
 
 EXECUTABLE=amivs
 

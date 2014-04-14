@@ -41,7 +41,7 @@ arg_key_isempty(UBYTE argNo)
 
 void 
 usage(void) {
-	printf("usage: amivs file.mp3 delay\n");
+	printf("usage: amivs FILE file.mp3 DELAY delay\n");
 }
 
 
@@ -49,8 +49,13 @@ int
 main(int argc, char *argv[])
 {
 	struct RDArgs *result;
-	CONST_STRPTR argTemplate =
-	    "FILE/K,DELAY/K,DEBUG/S";
+	CONST_STRPTR argTemplate;
+	STRPTR path;
+	ULONG size;
+	ULONG delay;
+	char *buf;
+
+	argTemplate = "FILE/K,DELAY/K,DEBUG/S";
 #define ARGNUM		3	
 
 #define FILE_ARG	0
@@ -72,8 +77,16 @@ main(int argc, char *argv[])
 		debug = TRUE; 
 	}
 
-	file_load(/*sumthin*/);
-	vs_play(/*sumthin else */);
+	size = file_size(path);	
+	buf = (char*) malloc(size);
+
+	if (debug)
+		printf("DEBUG: allocated %x bytes at address %p\n",
+		    (unsigned int) size, (void*) buf);
+
+	file_load(path, buf, size);
+	
+	vs_play(buf, size, delay);
 
 	FreeArgs(result);
 	FreeVec(argArray);
