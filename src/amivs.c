@@ -77,6 +77,7 @@ main(int argc, char *argv[])
 		debug = TRUE; 
 	}
 
+	path = (STRPTR) argArray[FILE_ARG];
 	size = file_size(path);	
 	buf = (char*) malloc(size);
 
