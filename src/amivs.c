@@ -67,8 +67,8 @@ main(int argc, char *argv[])
 	result = ReadArgs(argTemplate, argArray, NULL);
 
 	if ( (argc == 1) || 
-	     (!arg_key_isempty(FILE_ARG)) || 
-	     (!arg_key_isempty(DELAY_ARG)) ) {
+	     (arg_key_isempty(FILE_ARG)) || 
+	     (arg_key_isempty(DELAY_ARG)) ) {
 		usage();
 		return EXIT_SYNTAX_ERROR;
 	}
