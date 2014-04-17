@@ -87,7 +87,7 @@ main(int argc, char *argv[])
 
 	file_load(path, buf, size);
 	
-	vs_play(buf, size, delay);
+	vs_play_1b(buf, size, delay);
 
 	FreeArgs(result);
 	FreeVec(argArray);

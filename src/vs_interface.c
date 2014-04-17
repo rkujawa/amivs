@@ -41,3 +41,25 @@ vs_play(char *buf, ULONG size, ULONG delay)
 }
 
 
+void
+vs_play_1b(char *buf, ULONG size, ULONG delay)
+{
+	ULONG pos;
+
+	UBYTE wr_reg;
+
+	pos = 0;
+
+	while (pos < size) {
+		/* write buffer to first clockport register */
+		clockport_write(HW_SPI_DATA_WR_0, buf[pos++]);
+
+		/* SPI send */
+		clockport_write(HW_CPLD_COMMAND, HW_CPLD_COMMAND_SEND);
+
+		/* wait infinitely until HW_STATUS is 0 */
+		while (clockport_read(HW_STATUS) != 0);
+	}
+}
+
+
